@@ -1,0 +1,12 @@
+- git:
+    local-name: slam_gmapping
+    uri: git@github.com:ros-perception/slam_gmapping.git
+- git:
+    local-name: turtlebot
+    uri: https://github.com/turtlebot/turtlebot
+- git:
+    local-name: turtlebot_interactions
+    uri: https://github.com/turtlebot/turtlebot_interactions
+- git:
+    local-name: turtlebot_simulator
+    uri: https://github.com/turtlebot/turtlebot_simulator
