@@ -2,12 +2,14 @@
 #include <move_base_msgs/MoveBaseAction.h>
 #include <actionlib/client/simple_action_client.h>
 #include <tf/tf.h>
+#include <std_msgs/String.h>
 
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
 int main(int argc, char** argv){
   ros::init(argc, argv, "pick_objects");
-
+  ros::NodeHandle n;
+  ros::Publisher goal_state_pub = n.advertise<std_msgs::String>("transport_goal_state", 1000);
   //tell the action client that we want to spin a thread by default
   MoveBaseClient ac("move_base", true);
 
@@ -31,9 +33,12 @@ int main(int argc, char** argv){
 
   ac.waitForResult();
 
-  if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
+  if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
     ROS_INFO("Robot reached pickup pose");
-  else
+    std_msgs::String msg;
+    msg.data = "pickup_reached";
+    goal_state_pub.publish(msg);
+  } else
     ROS_INFO("Robot failed to move to pickup pose for some reason");
   
   ros::Duration(5.0).sleep();
@@ -53,9 +58,12 @@ int main(int argc, char** argv){
 
   ac.waitForResult();
 
-  if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
+  if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
     ROS_INFO("Hooray, the robot reached the dropoff location");
-  else
+    std_msgs::String msg;
+    msg.data = "dropoff_reached";
+    goal_state_pub.publish(msg);
+  } else
     ROS_INFO("The robot failed to move to the dropoff location for some reason");
 
   return 0;

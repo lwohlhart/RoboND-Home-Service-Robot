@@ -1,6 +1,6 @@
 #include <ros/ros.h>
 #include <visualization_msgs/Marker.h>
-#include <nav_msgs/Odometry.h>
+#include <std_msgs/String.h>
 
 class MarkerHandler
 {
@@ -8,7 +8,7 @@ private:
   /* data */
   ros::NodeHandle nh_;
   ros::Publisher marker_pub;
-  ros::Subscriber odom_subscriber;
+  ros::Subscriber goal_state_subscriber;
   visualization_msgs::Marker current_marker;
   std::vector<double> pickup_position = {5.9, -2.79};
   std::vector<double> dropoff_position = {2.1, 2.6};
@@ -19,7 +19,7 @@ private:
 
   visualization_msgs::Marker createMarker(const std::vector<double> &position, const double lifetime = -1.0);
   void publishMarker(visualization_msgs::Marker marker);
-  void odomCallback(const nav_msgs::Odometry::ConstPtr& msg);
+  void goalStateCallback(const std_msgs::String::ConstPtr &msg);
 
 public:
   MarkerHandler(ros::NodeHandle *nodeHandle);
@@ -29,7 +29,7 @@ public:
 MarkerHandler::MarkerHandler(ros::NodeHandle *nodeHandle) : nh_(*nodeHandle)
 {
   marker_pub = nh_.advertise<visualization_msgs::Marker>("visualization_marker", 1);
-  odom_subscriber = nh_.subscribe("/odom", 1000, &MarkerHandler::odomCallback, this);
+  goal_state_subscriber = nh_.subscribe("/transport_goal_state", 1000, &MarkerHandler::goalStateCallback, this);
   ros::spinOnce();
   ROS_INFO("Displaying marker at pickup location, waiting for robot to pick up");
   current_marker = createMarker(pickup_position);
@@ -40,43 +40,25 @@ MarkerHandler::~MarkerHandler()
 {
 }
 
-void MarkerHandler::odomCallback(const nav_msgs::Odometry::ConstPtr& msg)
+void MarkerHandler::goalStateCallback(const std_msgs::String::ConstPtr &msg)
 {
-  if(transport_finished) {
-    return;
-  }
-
-  const double x = msg->pose.pose.position.x;
-  const double y = msg->pose.pose.position.y;
-
-  double targetX = pickup_position[0];
-  double targetY = pickup_position[1];
-
-  if (marker_picked_up)
+  const char *goal_state = msg->data.c_str();
+  if (strcmp(goal_state, "pickup_reached") == 0)
   {
-    targetX = dropoff_position[0];
-    targetY = dropoff_position[1];
+    marker_picked_up = true;
+    ROS_INFO("Pickup location reached");
+    ros::Duration(5.0).sleep();
+    current_marker.action = visualization_msgs::Marker::DELETE;
+    publishMarker(current_marker);
+    ROS_INFO("Removing pickup marker, waiting for robot to drop off");
   }
-  const double dist = sqrt((x - targetX) * (x - targetX) + (y - targetY) * (y - targetY));
-  if (dist <= DIST_THRESHOLD)
+  else if (strcmp(goal_state, "dropoff_reached") == 0)
   {
-    if (!marker_picked_up)
-    {
-      marker_picked_up = true;
-      ROS_INFO("Pickup location reached");
-      ros::Duration(5.0).sleep();
-      current_marker.action = visualization_msgs::Marker::DELETE;
-      publishMarker(current_marker);
-      ROS_INFO("Removing pickup marker, waiting for robot to drop off");
-    }
-    else
-    {
-      transport_finished = true;
-      ros::Duration(2.0).sleep();
-      current_marker = createMarker(dropoff_position);
-      publishMarker(current_marker);
-      ROS_INFO("Dropoff location reached, showing dropped marker");
-    }
+    transport_finished = true;
+    ros::Duration(2.0).sleep();
+    current_marker = createMarker(dropoff_position);
+    publishMarker(current_marker);
+    ROS_INFO("Dropoff location reached, showing dropped marker");
   }
 }
 

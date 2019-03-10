@@ -20,6 +20,22 @@ Go to the workspace and install the package dependencies
 ```
 cd ~/catkin_ws/src
 wstool update
-rosdep install --from paths .
+rosdep install --from-paths .
 ```
+
+## Build 
+```
+cd ~/catkin_ws
+catkin_make
+source devel/setup.bash
+```
+## Run
+
+Navigate to the Shell scripts folder and run home_service.sh to test the final implementation
+```
+cd ~/catkin_ws/src/ShellScripts
+./home_service.sh
+```
+
+Demo video available at https://youtu.be/zqILh2jKBok
 
