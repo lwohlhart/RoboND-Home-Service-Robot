@@ -505,69 +505,69 @@
       <static>1</static>
     </model>
     <state world_name='default'>
-      <sim_time>23 97000000</sim_time>
-      <real_time>87 460362656</real_time>
-      <wall_time>1552164250 482772423</wall_time>
-      <iterations>23097</iterations>
+      <sim_time>30 307000000</sim_time>
+      <real_time>28 67217357</real_time>
+      <wall_time>1552226428 823804118</wall_time>
+      <iterations>7210</iterations>
       <model name='RoboHouse'>
-        <pose frame=''>2.73047 -2.40404 0 0 -0 0</pose>
+        <pose frame=''>2.73047 -2.40404 0 0 0 -0.358582</pose>
         <scale>1 1 1</scale>
         <link name='Wall_0'>
-          <pose frame=''>-1.754 -1.38851 0 0 0 -1.5708</pose>
+          <pose frame=''>-1.11237 0.120709 0 0 0 -1.92938</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='Wall_1'>
-          <pose frame=''>-0.754003 -6.38851 0 0 0 -0.785398</pose>
+          <pose frame=''>-1.93071 -4.91221 0 0 0 -1.14398</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='Wall_2'>
-          <pose frame=''>3.746 -7.38851 0 0 -0 0</pose>
+          <pose frame=''>1.93212 -7.42787 0 0 0 -0.358582</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='Wall_3'>
-          <pose frame=''>7.246 -3.38851 0 0 -0 1.5708</pose>
+          <pose frame=''>6.61329 -4.91061 0 0 -0 1.21222</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='Wall_4'>
-          <pose frame=''>5.746 0.611489 0 0 -0 3.14159</pose>
+          <pose frame=''>6.61249 -0.638604 0 0 -0 2.78301</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='Wall_5'>
-          <pose frame=''>4.246 -1.13851 0 0 0 -1.5708</pose>
+          <pose frame=''>4.59374 -1.75087 0 0 0 -1.92938</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='Wall_6'>
-          <pose frame=''>2.996 -2.88851 0 0 -0 3.14159</pose>
+          <pose frame=''>2.80909 -2.95088 0 0 -0 2.78301</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='Wall_7'>
-          <pose frame=''>1.746 -0.138511 0 0 -0 1.5708</pose>
+          <pose frame=''>2.6037 0.062887 0 0 -0 1.21222</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='Wall_8'>
-          <pose frame=''>-0.004003 2.61149 0 0 -0 3.14159</pose>
+          <pose frame=''>1.93011 3.25213 0 0 -0 2.78301</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='Wall_9'>
-          <pose frame=''>-1.754 2.61149 0 0 -0 0</pose>
+          <pose frame=''>0.291419 3.86629 0 0 0 -0.358582</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -589,7 +589,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose frame=''>18.3251 -3.13677 16.6029 0 0.827643 -3.12698</pose>
+        <pose frame=''>4.17711 5.36275 23.0407 0 1.26764 -2.35098</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
