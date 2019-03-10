@@ -11,6 +11,9 @@ sleep 5
 xterm -e "rosrun rviz rviz -d $PARENT_DIR/RvizConfig/home_service.rviz" &
 sleep 5
 
-xterm -e "rosrun add_markers add_markers_test"
+xterm -e "rosrun pick_objects pick_objects" & 
+sleep 2
+
+xterm -e "rosrun add_markers add_markers"
 
 
