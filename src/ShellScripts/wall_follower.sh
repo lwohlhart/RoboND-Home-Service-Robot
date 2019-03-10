@@ -2,7 +2,7 @@
 #!/bin/sh
 
 WORLD_PATH=$( cd "$(dirname "$0")/../World" ; pwd -P )
-xterm -e "roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=$WORLD_PATH/lw_house.world" &
+xterm -e "roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=$WORLD_PATH/lw_house.world gui:=false" &
 sleep 10 
 
 xterm -e "roslaunch wall_follower gmapping_lw_house.launch" &

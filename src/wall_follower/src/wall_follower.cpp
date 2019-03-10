@@ -28,8 +28,8 @@ typedef enum _ROBOT_MOVEMENT {
 
 } ROBOT_MOVEMENT;
 
-#define VEL_LINEAR 0.15 
-#define VEL_ANGULAR 0.5 
+#define VEL_LINEAR 0.3 
+#define VEL_ANGULAR 0.8 
  
 
 // The robot_move function will be called by the laser_callback function each time a laser scan data is received
